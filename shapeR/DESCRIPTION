@@ -1,0 +1,25 @@
+Package: shapeR
+Type: Package
+Title: Collection and Analysis of Otolith Shape Data
+Version: 0.1-4
+Date: 2015-04-02
+Authors@R: c(person("Lisa Anne", "Libungan", role = c("aut", "cre"), 
+  email = "lisa.libungan@gmail.com"),
+  person("Snaebjorn", "Palsson", role = c("aut", "ths"),
+  email = "snaebj@hi.is"))
+Maintainer: Lisa Anne Libungan <lisa.libungan@gmail.com>
+Depends: R (>= 3.0.2)
+Imports: gplots, jpeg, pixmap, wavethresh, methods, vegan, MASS
+Description: Studies otolith shape variation among fish populations. 
+  Otoliths are calcified structures found in the inner ear of teleost fish and their shape has 
+  been known to vary among several fish populations and stocks, making them very useful in taxonomy, 
+  species identification and to study geographic variations. The package extends previously described 
+  software used for otolith shape analysis by allowing the user to automatically extract closed 
+  contour outlines from a large number of images, perform smoothing to eliminate pixel noise, 
+  choose from conducting either a Fourier or wavelet transform to the outlines and visualize 
+  the mean shape. The output of the package are independent Fourier or wavelet coefficients 
+  which can be directly imported into a wide range of statistical packages in R. The package 
+  might prove useful in studies of any two dimensional objects.
+License: GPL(>=2)
+URL: https://github.com/lisalibungan/shapeR, http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0121102
+LazyDataCompression: yes
