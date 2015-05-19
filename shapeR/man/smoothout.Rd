@@ -16,7 +16,7 @@ Remove high frequency pixel noise around the otolith outline
 }
 \examples{
 \dontrun{
-data(otoliths)
+data(shape)
 shape = smoothout(shape,n=100)
 
 # Plot smoothed outline on top of original outline for comparison

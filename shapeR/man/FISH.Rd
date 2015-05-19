@@ -5,6 +5,9 @@
 \alias{FISH}
 \title{An example data file}
 \format{An example data file}
+\source{
+\url{https://github.com/lisalibungan/shapeR}
+}
 \usage{
 data(FISH)
 }

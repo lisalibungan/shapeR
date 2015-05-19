@@ -1,8 +1,8 @@
 Package: shapeR
 Type: Package
 Title: Collection and Analysis of Otolith Shape Data
-Version: 0.1-4
-Date: 2015-04-02
+Version: 0.1-5
+Date: 2015-05-19
 Authors@R: c(person("Lisa Anne", "Libungan", role = c("aut", "cre"), 
   email = "lisa.libungan@gmail.com"),
   person("Snaebjorn", "Palsson", role = c("aut", "ths"),

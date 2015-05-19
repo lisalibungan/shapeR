@@ -25,6 +25,6 @@ show.original.with.outline(shape,"IC","403_2")}
 Lisa Anne Libungan
 }
 \references{
-Libungan LA and Palsson S (2015) ShapeR: An R Package to Study Otolith Shape Variation among Fish Populations. PLoS ONE 10(3): e0121102.
+Libungan LA and Palsson S (2015) ShapeR: An R Package to Study Otolith Shape Variation among Fish Populations. PLoS ONE 10(3): e0121102. \url{http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0121102}
 }
 

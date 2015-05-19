@@ -42,7 +42,7 @@ Link the original info file to the otolith coefficients
 }
 \examples{
 \dontrun{
-data(otoliths)
+data(shape)
 shape = generateShapeCoefficients(shape)
 
 shape = enrich.master.list(shape)}

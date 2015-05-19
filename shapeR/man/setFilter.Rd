@@ -19,7 +19,7 @@ Sets a filter on \code{master.list}. Here it is possible to filter the \code{mas
 If no value is set, all data with shape parameters are used
 }
 \examples{
-data(otoliths)
+data(shape)
 #Filter only Icelandic and Norwegian samples
 shape = setFilter(shape,
 getMasterlist(shape, useFilter = FALSE)$pop \%in\% c("NO","IC"))

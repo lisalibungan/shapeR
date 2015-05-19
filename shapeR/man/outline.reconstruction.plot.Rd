@@ -23,7 +23,7 @@ Show graphs of the reconstruction using different number of levels of wavelet re
 Uses the output from \link{estimate.outline.reconstruction}
 }
 \examples{
-\dontrun{data(otoliths)
+\dontrun{data(shape)
 est.list = estimate.outline.reconstruction(shape)
 outline.reconstruction.plot(est.list,panel.first = grid())}
 }

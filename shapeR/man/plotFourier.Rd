@@ -21,7 +21,7 @@ plotFourier(object, coef.index=NULL,class.name=NULL,useStdcoef=FALSE, ...)
 The mean and standard deviation of the Fourier coefficients
 }
 \examples{
-data(otoliths)
+data(shape)
 shape = stdCoefs(shape,classes="pop","length_cm")
 plotFourier(shape,class.name= "pop",useStdcoef=TRUE)
 }

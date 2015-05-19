@@ -3,14 +3,19 @@
 \docType{data}
 \name{shape}
 \alias{shape}
-\title{An example shapeR instance including 160 images.
-The shape coefficients have been generated.
-The wavelet coefficients have been standardized using pop and length_cm.}
+\title{An example shapeR instance including 160 images.}
 \format{A shapeR class including 160 images}
+\source{
+\url{https://github.com/lisalibungan/shapeR}
+}
 \usage{
-data(otoliths)
+data(shape)
 }
 \description{
+The shape coefficients have been generated.
+The wavelet coefficients have been standardized using pop and length_cm.
+}
+\details{
 The class slot's are as follows:
 \itemize{
   \item project.path. A path as "ShapeAnalysis/"

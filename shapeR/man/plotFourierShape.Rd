@@ -21,13 +21,13 @@ plotFourierShape(object, class.name, show.angle = FALSE,lty=1:5,col=1:6, ...)
 A function for showing the mean otolith shape based on Fourier reconstruction
 }
 \examples{
-data(otoliths)
+data(shape)
 plotFourierShape(shape, "pop",show.angle = TRUE,lwd=2,lty=1)
 }
 \author{
 Lisa Anne Libungan
 }
 \references{
-Libungan LA and Palsson S (2015) ShapeR: An R Package to Study Otolith Shape Variation among Fish Populations. PLoS ONE 10(3): e0121102.
+Libungan LA and Palsson S (2015) ShapeR: An R Package to Study Otolith Shape Variation among Fish Populations. PLoS ONE 10(3): e0121102. \url{http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0121102}
 }
 

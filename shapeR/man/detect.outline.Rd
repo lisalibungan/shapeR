@@ -43,6 +43,6 @@ Urbanek, S. (2014). \code{\link{jpeg}}: Read and write JPEG images. R package  v
 
 Bivand, R., Leisch, F. & Maechler, M. (2011) \code{\link{pixmap}}: Bitmap Images (''Pixel Maps''). R package version 0.4-11.
 
-Libungan LA and Palsson S (2015) ShapeR: An R Package to Study Otolith Shape Variation among Fish Populations. PLoS ONE 10(3): e0121102.
+Libungan LA and Palsson S (2015) ShapeR: An R Package to Study Otolith Shape Variation among Fish Populations. PLoS ONE 10(3): e0121102. \url{http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0121102}
 }
 

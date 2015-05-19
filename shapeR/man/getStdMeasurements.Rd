@@ -17,7 +17,7 @@ Returns the simple shape variables determined in \code{stdCoefs}.
 Returns only values as set in the slot \code{filter}
 }
 \examples{
-data(otoliths)
+data(shape)
 #Calculate the mean standardized otolith length for each fish population
 tapply(getStdMeasurements(shape)$otolith.length,
 getMasterlist(shape)$pop,mean)

@@ -68,16 +68,25 @@ a shapeR class
 \examples{
 \dontrun{
 
-shape = shapeR("ShapeAnalysis/","FISH.csv")
-shape = detect.outline(shape,write.outline.w.org = TRUE)
+# This example has two sections: (1) Demonstration of how a shapeR object
+# is analyzed and (2) How to create a shapeR object from an archive of
+# image files.
 
-shape = generateShapeCoefficients(shape)
-shape = enrich.master.list(shape)
+#-----------------------------------------
+# Section 1: Analyzing a shapeR object
 
+data(shape)
+
+#Standardize coefficients
 shape = stdCoefs(shape,"pop","length_cm")
 
+#Visualize Wavelet and Fourier coefficients
 plotWavelet(shape,level=5,class.name= "pop",useStdcoef=TRUE)
 plotFourier(shape,class.name= "pop",useStdcoef=TRUE)
+
+#Examine the mean shapes
+plotWaveletShape(shape, "pop",show.angle = TRUE,lwd=2,lty=1)
+plotFourierShape(shape, "pop",show.angle = TRUE,lwd=2,lty=1)
 
 #Canonical analysis
 library(vegan)
@@ -118,12 +127,50 @@ diag(prop.table(ct.w, 1))
 
 # Total percent correct
 sum(diag(prop.table(ct.w)))
+
+#-----------------------------------------
+# Section 2: Creating a shapeR object from image files
+
+# The following example requires the user to download an archive of JPEG
+# files from https://github.com/lisalibungan/shapeR/
+# place the ShapeAnalysis directory inside the working directory.
+
+shape = shapeR("~/ShapeAnalysis/","FISH.csv")
+shape = detect.outline(shape,write.outline.w.org = TRUE)
+
+shape = generateShapeCoefficients(shape)
+shape = enrich.master.list(shape)
 }
 }
 \author{
 Lisa Anne Libungan & Snaebjorn Palsson
 }
 \references{
-Libungan LA and Palsson S (2015) ShapeR: An R Package to Study Otolith Shape Variation among Fish Populations. PLoS ONE 10(3): e0121102.
+Libungan LA and Palsson S (2015) ShapeR: An R Package to Study Otolith Shape Variation among Fish Populations. PLoS ONE 10(3): e0121102. \url{http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0121102}
+}
+\seealso{
+\url{https://github.com/lisalibungan/shapeR}
+
+\code{\link{plotWavelet}}
+
+\code{\link{plotFourier}}
+
+\code{\link{plotWaveletShape}}
+
+\code{\link{plotFourierShape}}
+
+\code{\link[vegan]{capscale}}
+
+\code{\link{cluster.plot}}
+
+\code{\link{setFilter}}
+
+\code{\link[MASS]{lda}}
+
+\code{\link{detect.outline}}
+
+\code{\link{generateShapeCoefficients}}
+
+\code{\link{enrich.master.list}}
 }
 

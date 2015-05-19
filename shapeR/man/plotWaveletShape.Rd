@@ -21,7 +21,7 @@ plotWaveletShape(object, class.name,show.angle=FALSE,lty=1:5,col=1:6,...)
 A function for showing the mean otolith shape based on wavelet reconstruction
 }
 \examples{
-data(otoliths)
+data(shape)
 plotWaveletShape(shape, "pop",show.angle = TRUE,lwd=2,lty=1)
 }
 \author{

@@ -23,7 +23,7 @@ plotWavelet(object, level, start.angle = 0, class.name=NULL,useStdcoef=FALSE,...
 The mean and standard deviation of the wavelet coefficients
 }
 \examples{
-data(otoliths)
+data(shape)
 shape = stdCoefs(shape,classes="pop","length_cm")
 plotWavelet(shape,level=5,class.name= "pop",useStdcoef=TRUE)
 }

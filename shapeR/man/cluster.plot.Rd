@@ -26,7 +26,7 @@ cluster.plot( ddata, classes, main="", col.stock=NULL,
 Plots data clusters
 }
 \examples{
-data(otoliths)
+data(shape)
 library(vegan)
 cap.res = capscale(getStdWavelet(shape) ~ getMasterlist(shape)$pop)
 

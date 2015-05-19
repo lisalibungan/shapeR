@@ -38,22 +38,43 @@ NULL
 #' @slot shape.std.removed The index of the removed shape measurements after standardization. The data is generated when \link{stdCoefs} is run
 #' 
 #' @return a \code{\linkS4class{shapeR}} object
-#' @references Libungan LA and Palsson S (2015) ShapeR: An R Package to Study Otolith Shape Variation among Fish Populations. PLoS ONE 10(3): e0121102.
+#' @references Libungan LA and Palsson S (2015) ShapeR: An R Package to Study Otolith Shape Variation among Fish Populations. PLoS ONE 10(3): e0121102. \url{http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0121102}
+#' @seealso \url{https://github.com/lisalibungan/shapeR}
+#' @seealso \code{\link{plotWavelet}}
+#' @seealso \code{\link{plotFourier}}
+#' @seealso \code{\link{plotWaveletShape}}
+#' @seealso \code{\link{plotFourierShape}}
+#' @seealso \code{\link[vegan]{capscale}}
+#' @seealso \code{\link{cluster.plot}}
+#' @seealso \code{\link{setFilter}}
+#' @seealso \code{\link[MASS]{lda}}
+#' @seealso \code{\link{detect.outline}}
+#' @seealso \code{\link{generateShapeCoefficients}}
+#' @seealso \code{\link{enrich.master.list}}
 #' @examples
 #'  
 #'\dontrun{
 #'
-#'shape = shapeR("ShapeAnalysis/","FISH.csv")
-#'shape = detect.outline(shape,write.outline.w.org = TRUE)
+#'# This example has two sections: (1) Demonstration of how a shapeR object 
+#'# is analyzed and (2) How to create a shapeR object from an archive of 
+#'# image files. 
 #'
-#'shape = generateShapeCoefficients(shape)
-#'shape = enrich.master.list(shape)
-#'  
+#'#-----------------------------------------
+#'# Section 1: Analyzing a shapeR object
+#'
+#'data(shape)
+#'
+#'#Standardize coefficients
 #'shape = stdCoefs(shape,"pop","length_cm")
 #'
+#'#Visualize Wavelet and Fourier coefficients
 #'plotWavelet(shape,level=5,class.name= "pop",useStdcoef=TRUE)
 #'plotFourier(shape,class.name= "pop",useStdcoef=TRUE)
-#'  
+#'
+#'#Examine the mean shapes
+#'plotWaveletShape(shape, "pop",show.angle = TRUE,lwd=2,lty=1) 
+#'plotFourierShape(shape, "pop",show.angle = TRUE,lwd=2,lty=1)
+#' 
 #'#Canonical analysis
 #'library(vegan)
 #'cap.res = capscale(getStdWavelet(shape) ~ getMasterlist(shape)$pop)
@@ -93,6 +114,19 @@ NULL
 #'
 #'# Total percent correct
 #'sum(diag(prop.table(ct.w)))
+#'
+#'#-----------------------------------------
+#'# Section 2: Creating a shapeR object from image files
+#'
+#'# The following example requires the user to download an archive of JPEG 
+#'# files from https://github.com/lisalibungan/shapeR/
+#'# place the ShapeAnalysis directory inside the working directory.
+#'
+#'shape = shapeR("~/ShapeAnalysis/","FISH.csv")
+#'shape = detect.outline(shape,write.outline.w.org = TRUE)
+#'
+#'shape = generateShapeCoefficients(shape)
+#'shape = enrich.master.list(shape)
 #'}
 #' @exportClass shapeR
 #' @rdname shapeR
@@ -175,11 +209,12 @@ setValidity("shapeR",
 #' }
 #' @examples
 #'\dontrun{
-#'data(otoliths)
+#'data(shape)
 #'shape = generateShapeCoefficients(shape)}
 #' @rdname generateShapeCoefficients
 #' @export generateShapeCoefficients
 #' @author Lisa Anne Libungan & Snaebjorn Palsson
+#' @seealso \code{\link[wavethresh]{wavethresh}}
 #' @references Nason, G. (2012). \code{\link{wavethresh}}: Wavelets statistics and transforms. R package, version 4.5.
 #' @references Claude, J. (2008). Morphometrics with R. Springer. 316 p.
 generateShapeCoefficients <- function(object,...) {
@@ -328,7 +363,7 @@ generateShapeCoefficients <- function(object,...) {
 #' @references Claude, J. (2008). Morphometrics with R. Springer. 316 p.
 #' @references Urbanek, S. (2014). \code{\link{jpeg}}: Read and write JPEG images. R package  version 0.1-8.
 #' @references Bivand, R., Leisch, F. & Maechler, M. (2011) \code{\link{pixmap}}: Bitmap Images (''Pixel Maps''). R package version 0.4-11.
-#' @references Libungan LA and Palsson S (2015) ShapeR: An R Package to Study Otolith Shape Variation among Fish Populations. PLoS ONE 10(3): e0121102.
+#' @references Libungan LA and Palsson S (2015) ShapeR: An R Package to Study Otolith Shape Variation among Fish Populations. PLoS ONE 10(3): e0121102. \url{http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0121102}
 detect.outline <- 
   function(object,threshold=0.2,mouse.click=FALSE,display.images=FALSE,write.outline.w.org = FALSE)
 {
@@ -421,7 +456,7 @@ detect.outline <-
 #' @rdname write.image.with.outline
 #' @export write.image.with.outline
 #' @author Lisa Anne Libungan
-#' @references Libungan LA and Palsson S (2015) ShapeR: An R Package to Study Otolith Shape Variation among Fish Populations. PLoS ONE 10(3): e0121102.
+#' @references Libungan LA and Palsson S (2015) ShapeR: An R Package to Study Otolith Shape Variation among Fish Populations. PLoS ONE 10(3): e0121102. \url{http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0121102}
 write.image.with.outline <- 
   function(object,folder=NA,fname=NA,doProgress=T)
 {
@@ -503,7 +538,7 @@ write.image.with.outline <-
 #' @param object A \code{\linkS4class{shapeR}} object
 #' @param folder The folder name where the image is stored
 #' @param fname Image file name. Not including the extension ".jpg"
-#' @references Libungan LA and Palsson S (2015) ShapeR: An R Package to Study Otolith Shape Variation among Fish Populations. PLoS ONE 10(3): e0121102.
+#' @references Libungan LA and Palsson S (2015) ShapeR: An R Package to Study Otolith Shape Variation among Fish Populations. PLoS ONE 10(3): e0121102. \url{http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0121102}
 #' @examples
 #'\dontrun{
 #'#Follow the example in Libungan and Palsson (2015) and run the following lines:
@@ -554,7 +589,7 @@ show.original.with.outline <-
 #' @examples
 #'
 #'\dontrun{ 
-#'data(otoliths)
+#'data(shape)
 #'shape = smoothout(shape,n=100)
 #'
 #'# Plot smoothed outline on top of original outline for comparison
@@ -615,7 +650,7 @@ smoothout <- function(object,n=100)
 #' }
 #' @examples
 #'\dontrun{
-#'data(otoliths)
+#'data(shape)
 #'shape = generateShapeCoefficients(shape)
 #'
 #'shape = enrich.master.list(shape)}
@@ -679,7 +714,7 @@ enrich.master.list <-
 #' @param lty,col Vector of line types and colors. Values are used cyclically.
 #' @param ... Additional parameters to be passed to 'plot'
 #' @examples
-#'data(otoliths)
+#'data(shape)
 #'plotWaveletShape(shape, "pop",show.angle = TRUE,lwd=2,lty=1)
 #' @rdname plotWaveletShape
 #' @export plotWaveletShape
@@ -748,12 +783,12 @@ plotWaveletShape <-
 #' @param lty,col Vector of line types and colors. Values are used cyclically.
 #' @param ... Additional parameters to be passed to 'plot'
 #' @examples
-#'data(otoliths)
+#'data(shape)
 #'plotFourierShape(shape, "pop",show.angle = TRUE,lwd=2,lty=1)
 #' @rdname plotFourierShape
 #' @export plotFourierShape
 #' @author Lisa Anne Libungan
-#' @references Libungan LA and Palsson S (2015) ShapeR: An R Package to Study Otolith Shape Variation among Fish Populations. PLoS ONE 10(3): e0121102.
+#' @references Libungan LA and Palsson S (2015) ShapeR: An R Package to Study Otolith Shape Variation among Fish Populations. PLoS ONE 10(3): e0121102. \url{http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0121102}
 plotFourierShape <- 
   function(object,class.name,show.angle=FALSE,lty=1:5,col=1:6,...)
   {
@@ -829,7 +864,7 @@ plotFourierShape <-
 #' @param p.crit An argument used to select the threshold critera for omitting coefficients which show interaction with fish length. If p.crit = 0.05, all coefficients which have p<0.05 are omitted. If p.crit = 0.01, only coefficients with p<0.01 are omitted. 
 #' @param bonferroni A logical parameter for performing Bonferroni for multiple testing 
 #' @examples
-#'data(otoliths)
+#'data(shape)
 #'shape = stdCoefs(shape,classes="pop","length_cm")
 #' @rdname stdCoefs 
 #' @export stdCoefs
@@ -937,7 +972,7 @@ getWavelet <- function(object) {
 #'   \item otolith.perimeter
 #' }
 #' @examples
-#'data(otoliths)
+#'data(shape)
 #'# Calculate the mean otolith area for each fish population
 #'# The results are in square mm since the calibration ('cal') column 
 #'# in the data file is in pixels (1 mm/pixel).
@@ -956,7 +991,7 @@ getMeasurements <- function(object) {
 #' @param object \code{\linkS4class{shapeR}} object 
 #' @return A data frame with all valid fish as determined by the slot \code{filter}. Returns only variables that have not been removed after standardization.
 #' @examples
-#'data(otoliths)
+#'data(shape)
 #'#Calculate the mean standardized otolith length for each fish population
 #'tapply(getStdMeasurements(shape)$otolith.length,
 #'getMasterlist(shape)$pop,mean)
@@ -1019,7 +1054,7 @@ getMasterlist <- function(object, useFilter = TRUE) {
 #' @param filter A vector restricting the new filter value. Only otoliths having shape parameters are selected.
 #' @return A \code{\linkS4class{shapeR}} object with the slot \code{filter} set.
 #' @examples
-#'data(otoliths)
+#'data(shape)
 #'#Filter only Icelandic and Norwegian samples
 #'shape = setFilter(shape,
 #'getMasterlist(shape, useFilter = FALSE)$pop %in% c("NO","IC")) 
@@ -1053,7 +1088,7 @@ setFilter <- function(object,filter=NULL) {
 #' @param useStdcoef Choose "TRUE" or "FALSE" if coefficients should be standardized or not
 #' @param ... Additional parameters to be passed to 'plot'
 #' @examples 
-#'data(otoliths)
+#'data(shape)
 #'shape = stdCoefs(shape,classes="pop","length_cm")
 #'plotWavelet(shape,level=5,class.name= "pop",useStdcoef=TRUE)
 #' @rdname plotWavelet
@@ -1122,7 +1157,7 @@ setFilter <- function(object,filter=NULL) {
 #' @param useStdcoef Boolean saying if to use the standardized coefficients or not
 #' @param ... Additional parameters to be passed to 'plot'
 #' @examples
-#'data(otoliths)
+#'data(shape)
 #'shape = stdCoefs(shape,classes="pop","length_cm")
 #'plotFourier(shape,class.name= "pop",useStdcoef=TRUE)
 #' @rdname plotFourier
@@ -1180,7 +1215,7 @@ plotFourier <-
 #' }
 #' @examples
 #'\dontrun{
-#'data(otoliths)
+#'data(shape)
 #'estimate.outline.reconstruction(shape)}
 #'
 #' @rdname estimate.outline.reconstruction
@@ -1263,7 +1298,7 @@ estimate.outline.reconstruction <-
 #' @param max.num.harmonics Maxinum number of Fourier harmonics to be shown
 #' @param ... Additional parameters to be passed to 'plot'
 #' @examples
-#'\dontrun{data(otoliths)
+#'\dontrun{data(shape)
 #'est.list = estimate.outline.reconstruction(shape)
 #'outline.reconstruction.plot(est.list,panel.first = grid())}
 #' @rdname outline.reconstruction.plot
@@ -1294,7 +1329,7 @@ outline.reconstruction.plot <- function(outline.rec.list,ref.w.level=5, ref.f.ha
 #' @param conf.level The confidence interval for the standard error of the mean
 #' @param ... Additional parameters to be passed to 'plot' or 'ldahist' if one dimension
 #' @examples
-#'data(otoliths)
+#'data(shape)
 #'library(vegan)
 #'cap.res = capscale(getStdWavelet(shape) ~ getMasterlist(shape)$pop)
 #'
@@ -1392,7 +1427,7 @@ cluster.plot <- function( ddata,classes,main="",col.stock = NULL,plotCI=FALSE,co
 #' @rdname remove.outline
 #' @export remove.outline
 #' @author Lisa Anne Libungan
-#' @references Libungan LA and Palsson S (2015) ShapeR: An R Package to Study Otolith Shape Variation among Fish Populations. PLoS ONE 10(3): e0121102.
+#' @references Libungan LA and Palsson S (2015) ShapeR: An R Package to Study Otolith Shape Variation among Fish Populations. PLoS ONE 10(3): e0121102. \url{http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0121102}
 remove.outline <- 
   
   function(object,folder="",fname=""){
@@ -1414,6 +1449,7 @@ remove.outline <-
 
 
 #' An example shapeR instance including 160 images.
+#' 
 #' The shape coefficients have been generated.
 #' The wavelet coefficients have been standardized using pop and length_cm.   
 #'
@@ -1434,8 +1470,9 @@ remove.outline <-
 #'
 #' @docType data
 #' @keywords datasets
+#' @source \url{https://github.com/lisalibungan/shapeR}
 #' @name shape
-#' @usage data(otoliths)
+#' @usage data(shape)
 #' @format A shapeR class including 160 images
 NULL
 
@@ -1466,6 +1503,7 @@ NULL
 #' @docType data
 #' @keywords datasets
 #' @usage data(FISH)
+#' @source \url{https://github.com/lisalibungan/shapeR}
 #' @name FISH
 #' @format An example data file
 NULL

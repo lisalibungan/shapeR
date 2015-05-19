@@ -24,7 +24,7 @@ Returns only values as set in the slot \code{filter}.
 These variables can only be obtained if the calibration measurements in pixels have been registered in the csv data file in a column labelled 'cal' (see example data file). To get the calibration measurements, use a image manipulation program and measure 1mm on the calibration measurement stick (that was taken for that particular dataset) and register how many pixels 1mm is into the column 'cal'.
 }
 \examples{
-data(otoliths)
+data(shape)
 # Calculate the mean otolith area for each fish population
 # The results are in square mm since the calibration ('cal') column
 # in the data file is in pixels (1 mm/pixel).

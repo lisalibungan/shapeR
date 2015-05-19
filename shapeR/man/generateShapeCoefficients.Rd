@@ -24,7 +24,7 @@ Generates shape variables based on Fourier/wavelet reconstruction. Wavelet coeff
 }
 \examples{
 \dontrun{
-data(otoliths)
+data(shape)
 shape = generateShapeCoefficients(shape)}
 }
 \author{
@@ -34,5 +34,8 @@ Lisa Anne Libungan & Snaebjorn Palsson
 Nason, G. (2012). \code{\link{wavethresh}}: Wavelets statistics and transforms. R package, version 4.5.
 
 Claude, J. (2008). Morphometrics with R. Springer. 316 p.
+}
+\seealso{
+\code{\link[wavethresh]{wavethresh}}
 }
 

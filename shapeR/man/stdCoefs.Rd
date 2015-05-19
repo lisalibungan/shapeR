@@ -33,7 +33,7 @@ If there is a significant interaction between population and length_cm, then the
 coefficients are kept and standardized with regards to fish length.
 }
 \examples{
-data(otoliths)
+data(shape)
 shape = stdCoefs(shape,classes="pop","length_cm")
 }
 \author{

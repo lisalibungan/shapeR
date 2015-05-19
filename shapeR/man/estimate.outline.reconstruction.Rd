@@ -24,7 +24,7 @@ Estimate outline reconstruction using a different number of coefficients of wave
 }
 \examples{
 \dontrun{
-data(otoliths)
+data(shape)
 estimate.outline.reconstruction(shape)}
 }
 \author{
